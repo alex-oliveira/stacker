@@ -13,4 +13,4 @@ APP_ROOT=$(pwd)
 
 cp ../../stacks/$STACK/docker-compose.yml .
 
-sed -i 's/__APP_ROOT__/$APP_ROOT/g' ${APP_ROOT}/docker-compose.yml
+sed -i 's/__APP_ROOT__/${APP_ROOT}/g' ${APP_ROOT}/docker-compose.yml
