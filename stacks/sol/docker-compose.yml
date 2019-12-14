@@ -4,11 +4,12 @@
 # nginx + mysql
 #
 
-version: '3'
+version: '3.7'
 
 services:
   web:
-    image: ../../db.apache-php
+    context: ${SW_APACHE_PHP}
+    dockerfile: Dockerfile
     ports:
       - "80:80"
     volumes:
@@ -16,7 +17,8 @@ services:
       - __APP_ROOT__/configs/nginx.conf:/etc/nginx/conf.d/default.conf
 
   db:
-    image: ../../db.mysql
+    context: ${DB_MYSQL}
+    dockerfile: Dockerfile
     ports:
       - "3306:3306"
     restart: unless-stopped
