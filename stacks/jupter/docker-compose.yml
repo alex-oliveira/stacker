@@ -10,12 +10,12 @@ services:
   web:
     image: ../../db.apache
     volumes:
-      - ${/apps/sgv/www}:/var/www
-      - ${/apps/sgv/data/storage}:/var/www/storage
-      - ${/apps/sgv/logs/apache}:/var/www
-      - ${/apps/sgv/logs/php}:/var/www
+      - __APP_ROOT__/www:/var/www
+      - __APP_ROOT__/data/storage:/var/www/storage
+      - __APP_ROOT__/logs/apache:/var/www
+      - __APP_ROOT__/logs/php:/var/www
   db:
     image: ../../db.apache
     volumes:
-      - ${/apps/sgv/data/database}:/var/www
-      - ${/apps/sgv/logs/database}:/var/www
+      - __APP_ROOT__/data/database:/var/www
+      - __APP_ROOT__/logs/database:/var/www
