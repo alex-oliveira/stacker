@@ -9,12 +9,13 @@
 # Ex: ./init.sh nome-stack
 
 STACK=$1
-APP_ROOT=$(pwd)
+APP_ROOT=$(echo $(pwd) | sed 's/\//\\\//g')
 
 cp ../../stacks/$STACK/.env .
 cp ../../stacks/$STACK/docker-compose.yml .
 
 sed -i 's/__APP_ROOT__/${APP_ROOT}/g' ${APP_ROOT}/.env
+sed -i 's/__APP_ROOT__/${APP_ROOT}/g' .env
 
 mkdir -p ${APP_ROOT}/data/database
 mkdir -p ${APP_ROOT}/data/storage
