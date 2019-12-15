@@ -1,24 +1,69 @@
-#
-# EARTH {NGINX + POSTGRES}
-#
-
 version: '3'
 
 services:
   nginx:
-    image: /stecker/images/sw.nginx
+    build: /stecker/images/sw.nginx
     ports:
-      - "8010:80"
+      - "8000:80"
     volumes:
-      - ${APP_PATH}/storage/nginx:/storage/nginx
-      - ${APP_PATH}/logs/nginx:/logs/nginx
+      #- ${APP_PATH}/configs/nginx.conf:/etc/nginx/nginx.conf
+      - ${APP_PATH}/storage/nginx:/usr/share/nginx/html
+      - ${APP_PATH}/logs/nginx:/var/log/nginx
     environment:
+      NGINX_HOST: earth.com.br
+      NGINX_PORT: 80
       VIRTUAL_HOST: earth.com.br
 
-  postgres:
-    image: /stecker/images/db.postgres
+  nginx_php:
+    build: /stecker/images/sw.nginx_php
+    ports:
+      - "8001:80"
+    volumes:
+      #- ${APP_PATH}/configs/nginx.conf:/etc/nginx/nginx.conf
+      - ${APP_PATH}/storage/nginx:/usr/share/nginx/html
+      - ${APP_PATH}/logs/nginx:/var/log/nginx
+    environment:
+      NGINX_HOST: earth.com.br
+      NGINX_PORT: 80
+      VIRTUAL_HOST: earth.com.br
+
+  mysql:
+    build: /stecker/images/db.mysql
     ports:
       - "3306:3306"
     volumes:
-      - ${APP_PATH}/storage/postgres:/storage/postgres
-      - ${APP_PATH}/logs/postgres:/logs/postgres
+      #- ${APP_PATH}/configs/mysql.conf:/etc/mysql/conf.d/config-file.cnf
+      - ${APP_PATH}/storage/mysql:/var/lib/mysql
+      - ${APP_PATH}/logs/mysql:/logs/mysql
+    environment:
+      MYSQL_DATABASE: earth
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 123456
+      MYSQL_ROOT_PASSWORD: 1234576
+      MYSQL_ALLOW_EMPTY_PASSWORD: false
+      MYSQL_RANDOM_ROOT_PASSWORD: true
+      MYSQL_ONETIME_PASSWORD: false
+
+  postgres:
+    build: /stecker/images/db.postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      #- ${APP_PATH}/configs/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ${APP_PATH}/storage/postgres:/var/lib/postgresql/data
+      - ${APP_PATH}/logs/postgres:/logs
+    environment:
+      POSTGRES_DB: earth
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_INITDB_ARGS:
+      POSTGRES_INITDB_WALDIR:
+
+  redis:
+    build: /stecker/images/db.redis
+    ports:
+      - "6379:6379"
+    volumes:
+      #- ${APP_PATH}/configs/redis.conf:/usr/local/etc/redis/redis.conf
+      - ${APP_PATH}/storage/redis:/data
+      - ${APP_PATH}/logs/redis:/var/log/redis

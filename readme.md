@@ -24,9 +24,9 @@ $ mkdir /apps
 $ cd /apps
 ````
 
-Create a new project based on a stack.
+Create a new project based on the "earth" stack.
 ````
-$ /stacker/init.sh myapp jupter
+$ /stacker/init.sh myapp earth
 ````
 
 
@@ -34,11 +34,11 @@ $ /stacker/init.sh myapp jupter
 ## Stack list
 |         | NGINX | NGINX/PHP | MYSQL | POSTGRES | REDIS |
 |---------|-------|-----------|-------|----------|-------|
-| MERCURY |   X   |           |   X   |          |       |
-| VENUS   |   X   |           |   X   |          |   X   |
-| EARTH   |   X   |           |       |     X    |       |
-| MARS    |   X   |           |       |     X    |   X   |
-| JUPITER |       |     X     |   X   |          |       |
-| SATURN  |       |     X     |   X   |          |   X   |
-| URANUS  |       |     X     |       |     X    |       |
-| NEPTUNE |       |     X     |       |     X    |   X   |
+| mercury |   X   |           |   X   |          |       |
+| venus   |   X   |           |   X   |          |   X   |
+| earth   |   X   |           |       |     X    |       |
+| mars    |   X   |           |       |     X    |   X   |
+| jupiter |       |     X     |   X   |          |       |
+| saturn  |       |     X     |   X   |          |   X   |
+| uranus  |       |     X     |       |     X    |       |
+| neptune |       |     X     |       |     X    |   X   |
