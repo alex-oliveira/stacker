@@ -1,0 +1,24 @@
+#
+# EARTH {NGINX + POSTGRES}
+#
+
+version: '3'
+
+services:
+  nginx:
+    image: /stecker/images/sw.nginx
+    ports:
+      - "8010:80"
+    volumes:
+      - ${APP_PATH}/storage/nginx:/storage/nginx
+      - ${APP_PATH}/logs/nginx:/logs/nginx
+    environment:
+      VIRTUAL_HOST: earth.com.br
+
+  postgres:
+    image: /stecker/images/db.postgres
+    ports:
+      - "3306:3306"
+    volumes:
+      - ${APP_PATH}/storage/postgres:/storage/postgres
+      - ${APP_PATH}/logs/postgres:/logs/postgres

@@ -1,30 +1,31 @@
 #!/bin/bash
 #
-# Autor.......: Guilherme Rodrigues | Alex Oliveira
-#
-# Data........: 14/12/2019
-# Finalidade..: Criação de Ambientes
+# $ /stacker/init.sh {project_name} {stack_name}
 #
 
-# Ex: ./init.sh nome-stack
+PROJECT_NAME=$1
+STACK_NAME=$2
 
-STACK=$1
-APP_ROOT=$(echo $(pwd) | sed 's/\//\\\//g')
+APP_PATH=$(pwd)/$PROJECT_NAME
 
-cp ../../stacks/$STACK/.env .
-cp ../../stacks/$STACK/docker-compose.yml .
+mkdir -p ${APP_PATH}/configs
+mkdir -p ${APP_PATH}/logs
+mkdir -p ${APP_PATH}/logs/mysql
+mkdir -p ${APP_PATH}/logs/nginx
+mkdir -p ${APP_PATH}/logs/postgres
+mkdir -p ${APP_PATH}/logs/redis
+mkdir -p ${APP_PATH}/storage
+mkdir -p ${APP_PATH}/storage/mysql
+mkdir -p ${APP_PATH}/storage/nginx
+mkdir -p ${APP_PATH}/storage/postgres
+mkdir -p ${APP_PATH}/storage/sqlite
 
-sed -i 's/__APP_ROOT__/${APP_ROOT}/g' ${APP_ROOT}/.env
-sed -i 's/__APP_ROOT__/${APP_ROOT}/g' .env
+cd $PROJECT_NAME
 
-mkdir -p ${APP_ROOT}/data/database
-mkdir -p ${APP_ROOT}/data/storage
-mkdir -p ${APP_ROOT}/logs/nginx
-mkdir -p ${APP_ROOT}/logs/database
-mkdir -p ${APP_ROOT}/www
+cp /stacker/stacks/$STACK_NAME/.env .
+cp /stacker/stacks/$STACK_NAME/docker-compose.yml .
 
-touch ${APP_ROOT}/www/index.html
-echo "works!" > ${APP_ROOT}/www/index.html
+sed -i 's/APP_PATH=APP_PATH/APP_PATH='$(echo $APP_PATH | sed 's/\//\\\//g')'/g' .env
 
 #docker-compose build
 #docker-compose up -d
