@@ -1,25 +1,19 @@
-#
-# JUPITER
-#
-# apache + php + mysql
-#
-
 version: '3'
 
 services:
-  web:
+  sw:
     image: ../../db.apache-php
     ports:
       - "80:80"
     volumes:
-      - ${APP_ROOT}/www:/var/www
-      - ${APP_ROOT}/data/storage:/var/www/storage
-      - ${APP_ROOT}/logs/apache:????
-      - ${APP_ROOT}/logs/php:????
+      - ${APP_PATH}/www:/var/www
+      - ${APP_PATH}/data/storage:/var/www/storage
+      - ${APP_PATH}/logs/apache:????
+      - ${APP_PATH}/logs/php:????
   db:
     image: ../../db.mysql
     ports:
           - "3306:3306"
     volumes:
-      - ${APP_ROOT}/data/database:????
-      - ${APP_ROOT}/logs/database:????
+      - ${APP_PATH}/data/database:????
+      - ${APP_PATH}/logs/database:????

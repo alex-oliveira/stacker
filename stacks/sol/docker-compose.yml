@@ -1,13 +1,7 @@
-#
-# SOL
-#
-# nginx + mysql
-#
-
 version: '3.7'
 
 services:
-  web:
+  sw:
     context: ${SW_APACHE_PHP}
     dockerfile: Dockerfile
     ports:
