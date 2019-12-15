@@ -1,5 +1,13 @@
 version: '3'
 
+volumes:
+  storage_nginx:
+    driver_opts:
+      device: ${APP_PATH}/storage/nginx
+  logs_nginx:
+    driver_opts:
+      device: ${APP_PATH}/logs/nginx
+
 services:
   nginx:
     build: /stecker/images/sw.nginx
@@ -7,8 +15,8 @@ services:
       - "8000:80"
     volumes:
       #- ${APP_PATH}/configs/nginx.conf:/etc/nginx/nginx.conf
-      - ${APP_PATH}/storage/nginx:/usr/share/nginx/html
-      - ${APP_PATH}/logs/nginx:/var/log/nginx
+      - storage_nginx:/usr/share/nginx/html
+      - logs_nginx:/var/log/nginx
     environment:
       NGINX_HOST: earth.com.br
       NGINX_PORT: 80
