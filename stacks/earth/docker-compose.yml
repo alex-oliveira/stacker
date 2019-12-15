@@ -1,11 +1,23 @@
 version: '3'
 
+networks:
+  proxy:
+    drive: bridge
+  apis:
+    drive: bridge
+  apps:
+    drive: bridge
+  database:
+    drive: bridge
+
 volumes:
   storage_nginx:
     driver_opts:
+      type: none
       device: ${APP_PATH}/storage/nginx
   logs_nginx:
     driver_opts:
+      type: none
       device: ${APP_PATH}/logs/nginx
 
 services:
