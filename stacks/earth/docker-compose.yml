@@ -10,7 +10,7 @@ volumes:
 
 services:
   nginx:
-    build: /stecker/images/sw.nginx
+    build: /stacker/images/sw.nginx
     ports:
       - "8000:80"
     volumes:
@@ -23,7 +23,7 @@ services:
       VIRTUAL_HOST: earth.com.br
 
   nginx_php:
-    build: /stecker/images/sw.nginx_php
+    build: /stacker/images/sw.nginx_php
     ports:
       - "8001:80"
     volumes:
@@ -36,7 +36,7 @@ services:
       VIRTUAL_HOST: earth.com.br
 
   mysql:
-    build: /stecker/images/db.mysql
+    build: /stacker/images/db.mysql
     ports:
       - "3306:3306"
     volumes:
@@ -53,7 +53,7 @@ services:
       MYSQL_ONETIME_PASSWORD: false
 
   postgres:
-    build: /stecker/images/db.postgres
+    build: /stacker/images/db.postgres
     ports:
       - "5432:5432"
     volumes:
@@ -68,7 +68,7 @@ services:
       POSTGRES_INITDB_WALDIR:
 
   redis:
-    build: /stecker/images/db.redis
+    build: /stacker/images/db.redis
     ports:
       - "6379:6379"
     volumes:
