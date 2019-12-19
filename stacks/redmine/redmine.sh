@@ -35,9 +35,8 @@ services:
     volumes:
       - redmine-data:/usr/src/redmine
       - redmine-files:/usr/src/redmine/files
-    ports:
-      - 3000:3000
     environment:
+      - VIRTUAL_HOST=redmine.example.com
       - "TZ=America/Sao_Paulo"
       - 'REDMINE_DB_POSTGRES=postgres'
       - 'REDMINE_DB_DATABASE=redmine'

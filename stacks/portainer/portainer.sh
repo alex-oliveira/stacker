@@ -19,6 +19,8 @@ services:
     restart: always
     ports:
       - "9000:9000"
+    environment:
+     - VIRTUAL_HOST=portainer.example.com
     command: -H unix:///var/run/docker.sock
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock" > $PWD/$stack_name/docker-compose.yml

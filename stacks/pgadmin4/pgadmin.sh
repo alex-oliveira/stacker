@@ -19,6 +19,7 @@ services:
     container_name: "$stack_name"_pgadmin4
     image: dpage/pgadmin4
     environment:
+      VIRTUAL_HOST=pgadmin.example.com
       PGADMIN_DEFAULT_EMAIL: "email.example.com"
       PGADMIN_DEFAULT_PASSWORD: "secret"
     volumes:
